@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
+import { SolicitacoesService } from './../solicitacoes.service';
+import { Component, OnInit } from '@angular/core';
+import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit{
 
-  constructor() {}
+  tablestyle = 'bootstrap';
+  solicitacoesLista: SolicitacoesDTO[] = [];
+  
+  constructor(private SolicitacoesService: SolicitacoesService) {  }
+
+  ngOnInit() {
+    this.listar();
+  }
+
+  listar() {
+  this.SolicitacoesService.listar().subscribe(dados => this.solicitacoesLista = dados);
+  }
 
 }

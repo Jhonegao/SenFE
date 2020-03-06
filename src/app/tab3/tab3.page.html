@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Lista de solicitações
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,35 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Lista de solicitações</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+   
+ <div>
+ <ngx-datatable
+    [rows]="solicitacoesLista"
+    [ngClass]="tablestyle"
+    [rowHeight]="'auto'"
+    [headerHeight]="50"
+    [summaryRow]="true"
+    [summaryPosition]="'bottom'"
+    [footerHeight]="40"
+    [columnMode]="'force'">
+  <ngx-datatable-column name="Solicitante"></ngx-datatable-column>
+  <ngx-datatable-column name="Descricao"></ngx-datatable-column>
+  <ngx-datatable-column name="Estado da Solicitacao" [sortable]="true" prop="status">
+      <ng-template
+        let-row="row"
+        let-value="value"
+        ngx-datatable-cell-template>
+        <ion-label color="success" *ngIf ="value === true">Aprovado</ion-label>
+        <ion-label color="danger" *ngIf ="value === false">Negado</ion-label>
+        <ion-label color="warning" *ngIf ="value === ''">Aguardando</ion-label>
+      </ng-template>
+    </ngx-datatable-column>
+  
+  </ngx-datatable>
+</div>
 </ion-content>

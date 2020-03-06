@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,19 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  formGroup: FormGroup;
+
+  constructor(public formBuilder: FormBuilder) {
+    
+      
+      this.formGroup = this.formBuilder.group({
+        textos: ['',[Validators.required, Validators.minLength(3),Validators.maxLength(200)]],
+        moeda: ['', [Validators.required]]
+        },
+        error=>{});
+
+  }
+
+  registrarSolicitacao(){}
 
 }

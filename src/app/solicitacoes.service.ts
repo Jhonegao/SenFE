@@ -8,7 +8,7 @@ import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
 })
 export class SolicitacoesService {
 
-  solicitacoesUrl = 'http://localhost:3000/pedidos';
+  solicitacoesUrl = 'http://ec2-52-67-16-133.sa-east-1.compute.amazonaws.com:3000/pedidos';
 
   constructor(private http: HttpClient) { }
 

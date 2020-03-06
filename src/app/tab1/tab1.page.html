@@ -17,17 +17,17 @@
     <form [formGroup] = "formGroup" (ngSubmit)="registrarSolicitacao(); $event.preventDefault()">
       <ion-item>
         <ion-label>Nome do material:</ion-label>
-        <ion-input formControlName="textos" type="text"></ion-input>
+        <ion-input formControlName="descricao" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Nome do solicitante:</ion-label> 
-        <ion-input formControlName="textos" type="text"></ion-input>
+        <ion-input formControlName="solicitante" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Valor R$:</ion-label>
-        <ion-input formControlName="moeda" type="text" ngModel mask="00,00"></ion-input>
+        <ion-input formControlName="preco" type="text" ngModel mask="00.00"></ion-input>
       </ion-item>
-      <ion-button ion-button type="submit" [disabled]="formGroup.invalid">Confirmar</ion-button>
+      <ion-button ion-button type="submit" [disabled]= "formGroup.invalid">Confirmar</ion-button>
     </form>
   </div>
 

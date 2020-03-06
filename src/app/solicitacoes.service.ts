@@ -15,4 +15,8 @@ export class SolicitacoesService {
   listar(): Observable<SolicitacoesDTO[]>{
     return this.http.get<SolicitacoesDTO[]>(`${this.solicitacoesUrl}`)
   }
+  registrarSolicitacao(sol: SolicitacoesDTO): Observable<SolicitacoesDTO[]>{
+    return this.http.post<SolicitacoesDTO[]>(`${this.solicitacoesUrl}`, sol,)
+  }
+
 }

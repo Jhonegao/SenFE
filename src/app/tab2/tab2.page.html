@@ -10,7 +10,7 @@
   <ion-grid *ngFor="let item of items" >
     <ion-row>
       <ion-col col-6 class="ion-no-padding">
-        <ion-card tappable (click)="goToSolicitacao()" *ngIf="item.status ===null">
+        <ion-card tappable (click)="goToSolicitacao(this.item.id)" *ngIf="item.status ===null">
 
            <ion-card-header>
             Item Id: {{item.id}}

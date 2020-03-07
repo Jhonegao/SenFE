@@ -14,6 +14,8 @@ export class Tab2Page {
 
   data:Observable<any>;
   items:any;
+  datas:Observable<any>
+  solicitacao: any
 
   constructor(public navCtrl: NavController,
               public solicitacoesService: SolicitacoesService,
@@ -26,12 +28,17 @@ export class Tab2Page {
     this.data = this.solicitacoesService.listar();
     this.data.subscribe(data =>{
       this.items = data;
+      console.log(this.items)
     })
   }
 
   goToSolicitacao(id: string){
-    this.solicitacoesService
-    console.log()
+    this.datas = this.solicitacoesService.getSolicitacao(id);
+      this.datas.subscribe(async () =>{ 
+        this.solicitacao = await this.datas
+    
+  })
+    console.log(this.solicitacao)
 
   }
 

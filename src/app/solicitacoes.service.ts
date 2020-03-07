@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
 
@@ -13,10 +13,11 @@ export class SolicitacoesService {
   constructor(private http: HttpClient) { }
 
   listar(): Observable<SolicitacoesDTO[]>{
-    return this.http.get<SolicitacoesDTO[]>(`${this.solicitacoesUrl}`)
+    return this.http.get<SolicitacoesDTO[]>(this.solicitacoesUrl)
   }
-  registrarSolicitacao(sol: SolicitacoesDTO): Observable<SolicitacoesDTO[]>{
-    return this.http.post<SolicitacoesDTO[]>(`${this.solicitacoesUrl}`, sol,)
+  registrarSolicitacao(sol: SolicitacoesDTO): Observable<HttpResponse<SolicitacoesDTO>>{
+    return this.http.post<SolicitacoesDTO>(this.solicitacoesUrl, sol, { observe: 'response' })
   }
+
 
 }

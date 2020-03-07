@@ -45,9 +45,11 @@ export class Tab2Page {
     this.datas = this.solicitacoesService.getSolicitacao(id);
       this.datas.subscribe(datas=>{
         this.solicitacao = datas;
-        console.log(this.solicitacao)
+        console.log(this.solicitacao.id)
+        this.routes.navigate(['/detalhes/',this.solicitacao.id])
       });   
-      this.routes.navigate(["/detalhes"])
+      
+      
   }
 
 }

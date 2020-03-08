@@ -18,6 +18,12 @@ describe('DetalhesPage', () => {
     fixture.detectChanges();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DetalhesPage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });

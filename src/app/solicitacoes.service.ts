@@ -23,5 +23,4 @@ export class SolicitacoesService {
     return this.http.get<SolicitacoesDTO>(this.solicitacoesUrl + '/' + id) 
   }
 
-
 }

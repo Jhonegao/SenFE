@@ -1,11 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      <h3>Detalhe Solicitação Id: </h3>
+    <ion-title *ngIf="items">
+      <h3>Detalhe Solicitação Id: {{items.id}} </h3>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -13,19 +12,21 @@
     </ion-toolbar>
   </ion-header>
   
-  <div>
+  <div *ngIf="items" >
     
-      <ion-item>
-        <ion-label>Nome do material:</ion-label>
-        <ion-input value="aaa" readonly></ion-input>
+      <ion-item >
+        
+        <ion-button (click)="btncheck()"></ion-button>
+        <ion-label> Nome do material: </ion-label>
+        <ion-input value="{{items.descricao}}" readonly></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Nome do solicitante:</ion-label> 
-        <ion-input value="Readonly Nome" readonly></ion-input>
+        <ion-label>Nome do solicitante: </ion-label> 
+        <ion-input value="{{items.solicitante}}" readonly></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Valor R$:</ion-label>
-        <ion-input value="Readonly Valor" readonly></ion-input>
+        <ion-label>Valor R$: </ion-label>
+        <ion-input value="{{items.preco}}" readonly></ion-input>
       </ion-item>
    
   </div>

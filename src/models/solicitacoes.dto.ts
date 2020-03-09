@@ -3,6 +3,6 @@ export interface SolicitacoesDTO {
     solicitante: string,
     descricao: string,
     preco: string,
-    status: string,
+    status: boolean,
     motivo: string,
 }

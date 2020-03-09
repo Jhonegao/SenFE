@@ -2,6 +2,7 @@ import { SolicitacoesService } from './../solicitacoes.service';
 import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AlertController, NavController } from '@ionic/angular';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class Tab1Page {
   
 
   constructor(public formBuilder: FormBuilder,
-              private SolicitacoesService: SolicitacoesService) {
+              private SolicitacoesService: SolicitacoesService,
+              public alertController: AlertController,
+              public navCtrl: NavController) {
     
       
       this.formGroup = this.formBuilder.group({
@@ -29,11 +32,28 @@ export class Tab1Page {
 
   }
 
-  
-
   registrarSolicitacao(){
-    this.SolicitacoesService.registrarSolicitacao(this.formGroup.value)
-    .subscribe(response=>{})
+    this.SolicitacoesService.addSolicitacao(this.formGroup.value)
+    .subscribe(response=>{
+      this.showAlert();
+    })
+    this.formGroup.reset();
+  }
+
+  async showAlert() {
+    const alert = await this.alertController.create({
+      message:"Solicitação Registrada",
+      backdropDismiss: false,
+      buttons: [
+        {
+          text:'ok',
+          handler: ()=> {
+            this.navCtrl.navigateRoot('')
+        }
+      }
+    ]
+  });
+    await alert.present();
   }
 
 }

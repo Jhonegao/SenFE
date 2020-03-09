@@ -12,7 +12,7 @@
   <div >
     
       <ion-item >        
-        <ion-button (click)="btncheck()"></ion-button>
+        
         <ion-label> Nome do material: </ion-label>
         <ion-input value="{{item.descricao}}" readonly></ion-input>
       </ion-item>
@@ -27,15 +27,20 @@
       <ion-item>
         <ion-label>Marcar Status</ion-label>
         <ion-select interface="popover" [(ngModel)]="item.status">
-          <ion-select-option  value= 1>Aprovado</ion-select-option>
-          <ion-select-option  value= 2>Negado</ion-select-option>
+          <ion-select-option  [value]="true">Aprovado</ion-select-option>
+          <ion-select-option  [value]="false">Negado</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item *ngIf="item.status === '2'">
+      <ion-item *ngIf="item.status ===true">
+        <ion-button color="success" (click)="btnEnviar()">Aprovar</ion-button>
+      </ion-item>
+      <ion-item *ngIf="item.status === false">
         <ion-label position="floating" >Motivo:</ion-label>
         <ion-textarea [(ngModel)]="item.motivo"></ion-textarea>
       </ion-item>
-      
+      <ion-item *ngIf="item.motivo">
+        <ion-button color="danger" (click)="btnEnviar()">Negar</ion-button>
+      </ion-item>
       
       
   </div>

@@ -12,10 +12,10 @@ export class SolicitacoesService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<SolicitacoesDTO[]>{
+  listSolicitacao(): Observable<SolicitacoesDTO[]>{
     return this.http.get<SolicitacoesDTO[]>(this.solicitacoesUrl)
   }
-  registrarSolicitacao(sol: SolicitacoesDTO): Observable<HttpResponse<SolicitacoesDTO>>{
+  addSolicitacao(sol: SolicitacoesDTO): Observable<HttpResponse<SolicitacoesDTO>>{
     return this.http.post<SolicitacoesDTO>(this.solicitacoesUrl, sol, { observe: 'response' })
   }
 

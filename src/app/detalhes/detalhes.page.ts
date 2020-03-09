@@ -1,9 +1,9 @@
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
 import { SolicitacoesService } from '../solicitacoes.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 
 
 @Component({
@@ -13,7 +13,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalhesPage implements OnInit{
   
-  formGroup: FormGroup;
   data:Observable<any>;
   item:SolicitacoesDTO
   obj:any;
@@ -21,27 +20,41 @@ export class DetalhesPage implements OnInit{
 
   constructor(private activatedRoute: ActivatedRoute,
               public solicitacoesService: SolicitacoesService,
-              public formBuilder: FormBuilder,
+              public alertController: AlertController,
+              public navCtrl: NavController,
               ) {
         this.activatedRoute.params.subscribe((params) => {
         this.obj = params;
     });
-
-    this.formGroup = this.formBuilder.group({
-      status: [null,[Validators.required]],
-      motivo: ['', [Validators.required]],
-      });
-    }
+  }
 
   ngOnInit(): void {
         this.solicitacoesService.getSolicitacao(this.obj.id).subscribe(data =>{
         this.item = data;     
         })
-       
   }
-  
-    btncheck(){
-    console.log(this.item)  
+
+  btnEnviar(){
+      this.solicitacoesService.updateSolicitacao(this.item).subscribe((response)=>{
+        console.log("response is :", response.id)
+      })
+      this.showAlert(); 
+  }
+
+  async showAlert() {
+    const alert = await this.alertController.create({
+      message:"Status atualizado",
+      backdropDismiss: false,
+      buttons: [
+        {
+          text:'ok',
+          handler: ()=> {
+            this.navCtrl.navigateRoot('')
+        }
       }
+    ]
+  });
+    await alert.present();
+  }
 
 };

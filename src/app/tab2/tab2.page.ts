@@ -19,32 +19,40 @@ export class Tab2Page {
   items:any;
   datas:Observable<any>
   solicitacao: any
+  semstatus: any = [];
 
   constructor(public navCtrl: NavController,
               public solicitacoesService: SolicitacoesService,
               private toastController: ToastController, 
               private routes : Router
              ){
-    this.getSolciitacoes();
   };
+
+  ionViewWillEnter(){
+
+    this.getSolciitacoes()
+    console.log("Carregou")
+  }
 
   goAnOtherPage() {
     this.navCtrl.navigateRoot('DetalhesPage')
   }
 
   getSolciitacoes(){
-    this.data = this.solicitacoesService.listar();
-    this.data.subscribe(data =>{
-      this.items = data;
-      console.log(this.items)
-      
-    });
+    this.semstatus=[]
+    this.datas = this.solicitacoesService.listSolicitacao();
+    this.datas.subscribe(response =>{
+      this.items = response;
+       this.items.forEach(element => {
+         console.log(element)
+    if (element.status === null) this.semstatus.push(element)
+    });   
+  });
   }
-
   goToSolicitacao(id: string){
-    this.datas = this.solicitacoesService.getSolicitacao(id);
-      this.datas.subscribe(datas=>{
-        this.solicitacao = datas;
+    this.data = this.solicitacoesService.getSolicitacao(id);
+      this.data.subscribe(response=>{
+        this.solicitacao = response;
           console.log(this.solicitacao.id)
         this.routes.navigate(['/detalhes/',this.solicitacao.id])
       });                

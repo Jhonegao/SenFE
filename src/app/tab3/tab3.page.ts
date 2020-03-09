@@ -15,11 +15,15 @@ export class Tab3Page implements OnInit{
   constructor(private SolicitacoesService: SolicitacoesService) {  }
 
   ngOnInit() {
-    this.listar();
+    this.list();
   }
 
-  listar() {
-  this.SolicitacoesService.listar().subscribe(dados => this.solicitacoesLista = dados);
+  ionViewWillEnter(){
+    this.list()
+    console.log("Carregou")
+  }
+  list() {
+  this.SolicitacoesService.listSolicitacao().subscribe(response => this.solicitacoesLista = response);
   }
 
 }

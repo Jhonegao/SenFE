@@ -23,4 +23,8 @@ export class SolicitacoesService {
     return this.http.get<SolicitacoesDTO>(this.solicitacoesUrl + '/' + id) 
   }
 
+  updateSolicitacao(sol: SolicitacoesDTO): Observable<any>{
+    return this.http.put(this.solicitacoesUrl + '/' + sol.id, sol)
+  }
+
 }

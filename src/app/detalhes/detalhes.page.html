@@ -1,34 +1,43 @@
+<ion-content [fullscreen]="true" *ngIf="item" >
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title *ngIf="items">
-      <h3>Detalhe Solicitação Id: {{items.id}} </h3>
+    <ion-title >
+      <h3>Detalhe Solicitação Id: {{item.id}} </h3>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="medium">Aprovar / Negar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
   
-  <div *ngIf="items" >
+  
+  <div >
     
-      <ion-item >
-        
+      <ion-item >        
         <ion-button (click)="btncheck()"></ion-button>
         <ion-label> Nome do material: </ion-label>
-        <ion-input value="{{items.descricao}}" readonly></ion-input>
+        <ion-input value="{{item.descricao}}" readonly></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Nome do solicitante: </ion-label> 
-        <ion-input value="{{items.solicitante}}" readonly></ion-input>
+        <ion-input value="{{item.solicitante}}" readonly></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Valor R$: </ion-label>
-        <ion-input value="{{items.preco}}" readonly></ion-input>
+        <ion-input value="{{item.preco}}" readonly></ion-input>
       </ion-item>
-   
+      <ion-item>
+        <ion-label>Marcar Status</ion-label>
+        <ion-select interface="popover" [(ngModel)]="item.status">
+          <ion-select-option  value= 1>Aprovado</ion-select-option>
+          <ion-select-option  value= 2>Negado</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="item.status === '2'">
+        <ion-label position="floating" >Motivo:</ion-label>
+        <ion-textarea [(ngModel)]="item.motivo"></ion-textarea>
+      </ion-item>
+      
+      
+      
   </div>
 
 </ion-content>

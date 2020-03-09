@@ -1,3 +1,4 @@
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
 import { SolicitacoesService } from '../solicitacoes.service';
@@ -12,49 +13,35 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetalhesPage implements OnInit{
   
-
+  formGroup: FormGroup;
   data:Observable<any>;
-  items:SolicitacoesDTO
+  item:SolicitacoesDTO
   obj:any;
-  teste:SolicitacoesDTO;
+  opcao:string
+
   constructor(private activatedRoute: ActivatedRoute,
               public solicitacoesService: SolicitacoesService,
+              public formBuilder: FormBuilder,
               ) {
         this.activatedRoute.params.subscribe((params) => {
         this.obj = params;
     });
-  }
 
-  ionViewWillEnter(){
-    
-  }
-  
-  async ionViewDidEnter(){
-  
-    this.btncheck();
-    //await console.log(this.items);
-    
-    console.log(this.teste)
-    
-    
-  }
+    this.formGroup = this.formBuilder.group({
+      status: [null,[Validators.required]],
+      motivo: ['', [Validators.required]],
+      });
+    }
+
   ngOnInit(): void {
         this.solicitacoesService.getSolicitacao(this.obj.id).subscribe(data =>{
-        this.items = data;     
-       this.teste = {
-      id: this.items.id,
-      solicitante: this.items.solicitante,
-      descricao: "string",
-      preco: "string",
-      status: "string",
-      motivo: "string",
-      }; 
-      })
+        this.item = data;     
+        })
        
   }
   
     btncheck(){
-    console.log(this.items)  
+    console.log(this.item)  
       }
 
 };

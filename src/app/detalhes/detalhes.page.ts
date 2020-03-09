@@ -35,9 +35,7 @@ export class DetalhesPage implements OnInit {
   }
 
   btnEnviar() {
-    this.solicitacoesService.updateSolicitacao(this.item).subscribe((response) => {
-      console.log("response is :", response.id)
-    })
+    this.solicitacoesService.updateSolicitacao(this.item).subscribe((response) => {    })
     this.showAlert();
   }
 

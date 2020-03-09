@@ -1,10 +1,8 @@
 import { SolicitacoesService } from './../solicitacoes.service';
 import { Observable } from 'rxjs';
-import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
 import { Component } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
-import { DetalhesPage } from '../detalhes/detalhes.page';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,9 +27,7 @@ export class Tab2Page {
   };
 
   ionViewWillEnter() {
-
     this.getSolciitacoes()
-    console.log("Carregou")
   }
 
   goAnOtherPage() {
@@ -47,7 +43,7 @@ export class Tab2Page {
 
         if (element.status === null) this.semstatus.push(element)
       });
-    }); console.log(this.semstatus)
+    });
   }
   goToSolicitacao(id: string) {
     this.data = this.solicitacoesService.getSolicitacao(id);

@@ -6,14 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from "./tab1.page";
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     ReactiveFormsModule,
     NgxMaskIonicModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])

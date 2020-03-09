@@ -2,19 +2,19 @@
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-title>
-        <h3>Detalhe Solicitação Id: {{item.id}}</h3>
+        <h3>Detalhe Solicitação</h3>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div>
     <ion-item>
-      <ion-label> Nome do material: </ion-label>
-      <ion-input value="{{item.descricao}}" readonly></ion-input>
+      <ion-label> Nome do solicitante: </ion-label>
+      <ion-input value="{{item.solicitante}}" readonly></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Nome do solicitante: </ion-label>
-      <ion-input value="{{item.solicitante}}" readonly></ion-input>
+      <ion-label>Nome do material: </ion-label>
+      <ion-input value="{{item.descricao}}" readonly></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Valor R$: </ion-label>
@@ -29,13 +29,15 @@
     </ion-item>
     <ion-item *ngIf="item.status ===true">
       <ion-button color="success" (click)="btnEnviar()">Aprovar</ion-button>
+      <ion-label position="floating">Motivo:</ion-label>
+      <ion-textarea [(ngModel)]="item.motivo"></ion-textarea>
     </ion-item>
     <ion-item *ngIf="item.status === false">
       <ion-label position="floating">Motivo:</ion-label>
       <ion-textarea [(ngModel)]="item.motivo"></ion-textarea>
-    </ion-item>
-    <ion-item *ngIf="item.motivo">
+      <ion-item *ngIf="item.motivo">
       <ion-button color="danger" (click)="btnEnviar()">Negar</ion-button>
+    </ion-item>
     </ion-item>
   </div>
 </ion-content>

@@ -15,20 +15,20 @@ import { Route, Router } from '@angular/router';
 export class Tab2Page {
 
 
-  data:Observable<any>;
-  items:any;
-  datas:Observable<any>
+  data: Observable<any>;
+  items: any;
+  datas: Observable<any>
   solicitacao: any
   semstatus: any = [];
 
   constructor(public navCtrl: NavController,
-              public solicitacoesService: SolicitacoesService,
-              private toastController: ToastController, 
-              private routes : Router
-             ){
+    public solicitacoesService: SolicitacoesService,
+    private toastController: ToastController,
+    private routes: Router
+  ) {
   };
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
 
     this.getSolciitacoes()
     console.log("Carregou")
@@ -38,24 +38,24 @@ export class Tab2Page {
     this.navCtrl.navigateRoot('DetalhesPage')
   }
 
-  getSolciitacoes(){
-    this.semstatus=[]
+  getSolciitacoes() {
+    this.semstatus = []
     this.datas = this.solicitacoesService.listSolicitacao();
-    this.datas.subscribe(response =>{
+    this.datas.subscribe(response => {
       this.items = response;
-       this.items.forEach(element => {
-         console.log(element)
-    if (element.status === null) this.semstatus.push(element)
-    });   
-  });
+      this.items.forEach(element => {
+
+        if (element.status === null) this.semstatus.push(element)
+      });
+    }); console.log(this.semstatus)
   }
-  goToSolicitacao(id: string){
+  goToSolicitacao(id: string) {
     this.data = this.solicitacoesService.getSolicitacao(id);
-      this.data.subscribe(response=>{
-        this.solicitacao = response;
-          console.log(this.solicitacao.id)
-        this.routes.navigate(['/detalhes/',this.solicitacao.id])
-      });                
+    this.data.subscribe(response => {
+      this.solicitacao = response;
+      console.log(this.solicitacao.id)
+      this.routes.navigate(['/detalhes/', this.solicitacao.id])
+    });
   }
 
 }

@@ -7,23 +7,23 @@ import { SolicitacoesDTO } from 'src/models/solicitacoes.dto';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page implements OnInit{
+export class Tab3Page implements OnInit {
 
   tablestyle = 'bootstrap';
   solicitacoesLista: SolicitacoesDTO[] = [];
-  
-  constructor(private SolicitacoesService: SolicitacoesService) {  }
+
+  constructor(private SolicitacoesService: SolicitacoesService) { }
 
   ngOnInit() {
     this.list();
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.list()
     console.log("Carregou")
   }
   list() {
-  this.SolicitacoesService.listSolicitacao().subscribe(response => this.solicitacoesLista = response);
+    this.SolicitacoesService.listSolicitacao().subscribe(response => this.solicitacoesLista = response);
   }
 
 }

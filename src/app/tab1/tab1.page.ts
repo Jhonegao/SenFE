@@ -11,48 +11,48 @@ import { AlertController, NavController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  
-  formGroup: FormGroup;
-  solicitacao: SolicitacoesDTO[]=[];
 
-  
+  formGroup: FormGroup;
+  solicitacao: SolicitacoesDTO[] = [];
+
+
 
   constructor(public formBuilder: FormBuilder,
-              private SolicitacoesService: SolicitacoesService,
-              public alertController: AlertController,
-              public navCtrl: NavController) {
-    
-      
-      this.formGroup = this.formBuilder.group({
-        descricao: ['',[Validators.required, Validators.minLength(3),Validators.maxLength(200)]],
-        solicitante: ['',[Validators.required, Validators.minLength(3),Validators.maxLength(200)]],
-        preco: ['', [Validators.required]]
-        },
-        error=>{});
+    private SolicitacoesService: SolicitacoesService,
+    public alertController: AlertController,
+    public navCtrl: NavController) {
+
+
+    this.formGroup = this.formBuilder.group({
+      descricao: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+      solicitante: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+      preco: ['', [Validators.required]]
+    },
+      error => { });
 
   }
 
-  registrarSolicitacao(){
+  registrarSolicitacao() {
     this.SolicitacoesService.addSolicitacao(this.formGroup.value)
-    .subscribe(response=>{
-      this.showAlert();
-    })
+      .subscribe(response => {
+        this.showAlert();
+      })
     this.formGroup.reset();
   }
 
   async showAlert() {
     const alert = await this.alertController.create({
-      message:"Solicitação Registrada",
+      message: "Solicitação Registrada",
       backdropDismiss: false,
       buttons: [
         {
-          text:'ok',
-          handler: ()=> {
+          text: 'ok',
+          handler: () => {
             this.navCtrl.navigateRoot('')
+          }
         }
-      }
-    ]
-  });
+      ]
+    });
     await alert.present();
   }
 

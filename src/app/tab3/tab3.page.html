@@ -13,31 +13,34 @@
     </ion-toolbar>
   </ion-header>
 
-
-   
- <div>
- <ngx-datatable
-    [rows]="solicitacoesLista"
-    [ngClass]="tablestyle"
-    [rowHeight]="'auto'"
-    [headerHeight]="50"
-    [summaryRow]="true"
-    [summaryPosition]="'bottom'"
-    [footerHeight]="40"
-    [columnMode]="'force'">
-  <ngx-datatable-column name="Solicitante"></ngx-datatable-column>
-  <ngx-datatable-column name="Descricao"></ngx-datatable-column>
-  <ngx-datatable-column name="Estado da Solicitacao" [sortable]="true" prop="status">
-      <ng-template
-        let-row="row"
-        let-value="value"
-        ngx-datatable-cell-template>
-        <ion-label color="success" *ngIf ="value === true">Aprovado</ion-label>
-        <ion-label color="danger" *ngIf ="value === false">Negado</ion-label>
-        <ion-label color="warning" *ngIf ="value === ''">Aguardando</ion-label>
-      </ng-template>
-    </ngx-datatable-column>
-  
-  </ngx-datatable>
-</div>
+  <div>
+    <ngx-datatable
+      [rows]="solicitacoesLista"
+      [ngClass]="tablestyle"
+      [rowHeight]="'auto'"
+      [headerHeight]="50"
+      [summaryRow]="true"
+      [summaryPosition]="'bottom'"
+      [footerHeight]="40"
+      [columnMode]="'force'"
+    >
+      <ngx-datatable-column name="Solicitante"></ngx-datatable-column>
+      <ngx-datatable-column name="Descricao"></ngx-datatable-column>
+      <ngx-datatable-column
+        name="Estado da Solicitacao"
+        [sortable]="true"
+        prop="status"
+      >
+        <ng-template
+          let-row="row"
+          let-value="value"
+          ngx-datatable-cell-template
+        >
+          <ion-label color="success" *ngIf="value === true">Aprovado</ion-label>
+          <ion-label color="danger" *ngIf="value === false">Negado</ion-label>
+          <ion-label color="warning" *ngIf="value === ''">Aguardando</ion-label>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
 </ion-content>

@@ -12,19 +12,19 @@ export class SolicitacoesService {
 
   constructor(private http: HttpClient) { }
 
-  listSolicitacao(): Observable<SolicitacoesDTO[]>{
+  listSolicitacao(): Observable<SolicitacoesDTO[]> {
     return this.http.get<SolicitacoesDTO[]>(this.solicitacoesUrl)
   }
-  addSolicitacao(sol: SolicitacoesDTO): Observable<HttpResponse<SolicitacoesDTO>>{
+  addSolicitacao(sol: SolicitacoesDTO): Observable<HttpResponse<SolicitacoesDTO>> {
     return this.http.post<SolicitacoesDTO>(this.solicitacoesUrl, sol, { observe: 'response' })
   }
 
   getSolicitacao(id: string): Observable<SolicitacoesDTO> {
-    return this.http.get<SolicitacoesDTO>(this.solicitacoesUrl + '/' + id) 
+    return this.http.get<SolicitacoesDTO>(this.solicitacoesUrl + '/' + id)
   }
 
-  updateSolicitacao(sol: SolicitacoesDTO): Observable<any>{
+  updateSolicitacao(sol: SolicitacoesDTO): Observable<any> {
     return this.http.put(this.solicitacoesUrl + '/' + sol.id, sol)
   }
-
+S
 }
